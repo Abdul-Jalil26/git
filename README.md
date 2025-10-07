@@ -275,3 +275,97 @@ An event that takes place when git is unable to automatically resolve difference
 
 ---Bye Jalil----
 --Hello Jalil---
+
+
+
+1️⃣ git reset
+
+git reset is used to move the current branch’s HEAD to a specific commit.
+It can operate in three modes:
+
+Mode	Command	What it does
+soft	git reset --soft <commit>	Moves HEAD to <commit> but keeps changes staged in the index (ready to commit again)
+mixed (default)	git reset <commit> or git reset --mixed <commit>	Moves HEAD to <commit> and unstages changes but keeps them in the working directory
+hard	git reset --hard <commit>	Moves HEAD to <commit> and removes all changes from index & working directory (dangerous!)
+2️⃣ Using HEAD~1
+
+HEAD points to the current commit.
+HEAD~1 means “one commit before HEAD” (the parent of the current commit).
+
+Example: Undo last commit but keep changes staged
+git reset --soft HEAD~1
+
+
+Moves HEAD to previous commit
+
+Keeps all changes from the undone commit in the staging area
+
+Example: Undo last commit and unstage changes
+git reset HEAD~1
+
+
+Default --mixed
+
+HEAD moves back one commit
+
+Changes are in the working directory but unstaged
+
+Example: Undo last commit completely
+git reset --hard HEAD~1
+
+
+Removes the last commit
+
+All changes lost (not recoverable unless reflog is used)
+
+3️⃣ Using a specific commit hash
+
+Instead of HEAD~1, you can reset to a specific commit hash:
+
+Example: Undo to a specific commit
+git reset --soft c787be5
+
+
+Moves HEAD to commit c787be5
+
+Keeps changes staged
+
+git reset --hard c787be5
+
+
+Moves HEAD to c787be5
+
+Removes all changes after that commit
+
+4️⃣ Safety tips
+
+Use --soft or --mixed if unsure — this prevents accidental data loss.
+
+Avoid --hard if commits were already pushed to remote (others may depend on them).
+
+Check your current branch before resetting:
+
+git status
+git log --oneline
+
+
+You can recover hard-reset commits using reflog:
+
+git reflog
+git checkout <old-hash>
+
+✅ Quick Command Summary
+# Undo last commit but keep changes staged
+git reset --soft HEAD~1
+
+# Undo last commit and unstage changes
+git reset HEAD~1
+
+# Undo last commit completely
+git reset --hard HEAD~1
+
+# Reset to a specific commit, keep staged
+git reset --soft <commit-hash>
+
+# Reset to a specific commit, remove changes
+git reset --hard <commit-hash>
