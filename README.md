@@ -2,7 +2,6 @@
 everything about github 
 Git is nothing but a version controlling system.<Br>It helps to track all of our task.
 
-Author --Abdul Jalil Tamjid
 
 
 
@@ -267,4 +266,11 @@ git checkout -b dev
 git checkout dev
 git reset --hard main
 git push --force origin dev
+
+
+
+
+#Resolving Marge Conflict
+
+An event that takes place when git is unable to automatically resolve differences in code between two commits.
 
